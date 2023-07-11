@@ -16,6 +16,15 @@ const initialState: SearchState = {
   page: 0,
 };
 
+const initialStateLocalStorage = localStorage.getItem("searchState");
+
+if (initialStateLocalStorage) {
+  const parsedInitialStateLocalStorage: SearchState = JSON.parse(initialStateLocalStorage) as SearchState;
+  initialState.currentSearch = parsedInitialStateLocalStorage.currentSearch;
+  initialState.movies = parsedInitialStateLocalStorage.movies;
+  initialState.totalResults = parsedInitialStateLocalStorage.totalResults;
+  initialState.page = parsedInitialStateLocalStorage.page;
+}
 
 export const search = createSlice({
   name: "search",
@@ -23,15 +32,19 @@ export const search = createSlice({
   reducers: {
     setCurrentSearch: (state, action: PayloadAction<string>) => {
       state.currentSearch = action.payload;
+      localStorage.setItem("searchState", JSON.stringify(state));
     },
     setMovies: (state, action: PayloadAction<Movie[]>) => {
       state.movies = action.payload;
+      localStorage.setItem("searchState", JSON.stringify(state));
     },
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
+      localStorage.setItem("searchState", JSON.stringify(state));
     },
     setTotalResults: (state, action: PayloadAction<number>) => {
       state.totalResults = action.payload;
+      localStorage.setItem("searchState", JSON.stringify(state));
     }
   }
 });
