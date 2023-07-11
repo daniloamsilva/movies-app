@@ -9,6 +9,7 @@ import './global.scss';
 import { Home } from './pages/Home';
 import { Movie } from './pages/Movie';
 import { NotFound } from './pages/NotFound';
+import { ReduxProvider } from './redux/provider.tsx';
 
 const route = createBrowserRouter([
   {
@@ -30,8 +31,10 @@ const route = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <RouterProvider router={route} />
-    </ThemeProvider>
+    <ReduxProvider>
+      <ThemeProvider>
+        <RouterProvider router={route} />
+      </ThemeProvider>
+    </ReduxProvider>
   </React.StrictMode>,
 );

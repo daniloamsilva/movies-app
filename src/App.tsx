@@ -8,7 +8,6 @@ function App() {
     <>
       <Bar design="Header">Movies App</Bar>
       <main>
-        <h1>Hello World!</h1>
         <Outlet />
       </main>
     </>
