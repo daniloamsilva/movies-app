@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ui5/webcomponents": "^1.15.1",
+    "@ui5/webcomponents-fiori": "^1.15.1",
+    "@ui5/webcomponents-react": "^1.17.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1"
