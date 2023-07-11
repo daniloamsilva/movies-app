@@ -1,7 +1,13 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "../../redux/store";
-import { setCurrentSearch, setMovies, setPage, setTotalResults } from "../../redux/features/search-slice";
+import {
+  setCurrentSearch,
+  setMovies,
+  setPage,
+  setTotalResults,
+  reset
+} from "../../redux/features/search-slice";
 import { Button, Input, ResponsiveGridLayout, Title } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents/dist/features/InputElementsFormSupport.js"
 
@@ -38,6 +44,11 @@ export function Home() {
     setLoading(false);
   }, [dispatch, search]);
 
+  const handleResetButton = useCallback(() => {
+    setSearch("");
+    dispatch(reset());
+  }, [dispatch]);
+
   return (
     <>
       <div className={styles.search_container}>
@@ -56,6 +67,7 @@ export function Home() {
               icon="search"
               disabled={loading || search.length === 0}
             />
+            <Button type="Button" onClick={handleResetButton}>Reset</Button>
           </div>
         </form>
       </div>

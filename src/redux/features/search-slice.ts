@@ -45,10 +45,17 @@ export const search = createSlice({
     setTotalResults: (state, action: PayloadAction<number>) => {
       state.totalResults = action.payload;
       localStorage.setItem("searchState", JSON.stringify(state));
-    }
+    },
+    reset: (state) => {
+      localStorage.removeItem("searchState");
+      state.currentSearch = "";
+      state.movies = [];
+      state.totalResults = 0;
+      state.page = 0;
+    },
   }
 });
 
-export const { setCurrentSearch, setMovies, setPage, setTotalResults } = search.actions;
+export const { setCurrentSearch, setMovies, setPage, setTotalResults, reset } = search.actions;
 export const searchSelector = (state: RootState) => state.searchReducer;
 export default search.reducer;
