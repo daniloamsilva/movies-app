@@ -34,7 +34,7 @@ export function Movie() {
   }
 
   return (
-    <section className={styles.details_wrapper}>
+    <section className={styles.details_wrapper} data-test="movie-details-page">
       {!movie && <p>Carregando...</p>}
       {movie && (
         <>
@@ -53,16 +53,16 @@ export function Movie() {
             columnsS={1}
           >
             <div className={styles.poster_wrapper}>
-              <img src={movie.poster || "/no-image.png"} alt={movie.title} />
+              <img src={movie.poster || "/no-image.png"} alt={movie.title} data-test="movie-poster" />
             </div>
-            <div className={styles.details}>
+            <div className={styles.details} data-test="movie-details">
               <Title>{movie.title}</Title>
-              <Text><strong>Sinopse:</strong> {movie.plot}</Text>
-              <Text><strong>Elenco:</strong> {movie.actors.join(", ")}</Text>
-              <Text><strong>Diretor:</strong> {movie.director}</Text>
-              <Text><strong>Gêneros:</strong> {movie.genres.join(", ")}</Text>
-              <Text><strong>Lançamento:</strong> {movie.released}</Text>
-              <Text><strong>Availação:</strong> {movie.rating}</Text>
+              <Text><strong data-test="movie-detail-item">Sinopse:</strong> {movie.plot}</Text>
+              <Text><strong data-test="movie-detail-item">Elenco:</strong> {movie.actors.join(", ")}</Text>
+              <Text><strong data-test="movie-detail-item">Diretor:</strong> {movie.director}</Text>
+              <Text><strong data-test="movie-detail-item">Gêneros:</strong> {movie.genres.join(", ")}</Text>
+              <Text><strong data-test="movie-detail-item">Lançamento:</strong> {movie.released}</Text>
+              <Text><strong data-test="movie-detail-item">Availação:</strong> {movie.rating}</Text>
               <ToggleButton
                 icon={isFavorite ? "favorite" : "unfavorite"}
                 pressed={isFavorite}

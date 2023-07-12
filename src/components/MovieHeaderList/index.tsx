@@ -37,7 +37,7 @@ export function MovieHeaderList({ handleSetLoading }: MovieHeaderListProps) {
     <>
       <ResponsiveGridLayout columnsXL={2} columnsL={2} columnsM={2} columnsS={2} rowGap='0.5rem' style={{ alignItems: "end" }}>
         <Text>{totalResults} resultados</Text>
-        <div style={{ display: "flex", justifyContent: "end", gap: "0.5rem" }}>
+        <div style={{ display: "flex", justifyContent: "end", gap: "0.5rem" }} data-test="page-buttons">
           <Button
             icon='navigation-left-arrow'
             disabled={page === 1}
