@@ -34,7 +34,7 @@ export function Movie() {
   }
 
   return (
-    <section className={styles.details_wrapper}>
+    <section className={styles.details_wrapper} data-test="movie-details">
       {!movie && <p>Carregando...</p>}
       {movie && (
         <>

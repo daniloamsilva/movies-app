@@ -54,7 +54,7 @@ export function Home() {
       <div className={styles.search_container}>
         <form onSubmit={handleSubmitSearchForm}>
           <label>O que você quer assistir hoje?</label>
-          <div>
+          <div data-test="search-container">
             <Input
               className={styles.input_search}
               placeholder="Digite o nome do filme"
