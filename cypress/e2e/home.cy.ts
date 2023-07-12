@@ -26,7 +26,7 @@ describe('Home', () => {
     cy.getByData('search-container').find('button').first().click();
     cy.getByData('movie-card').first().click();
 
-    cy.getByData('movie-details').should('exist');
+    cy.getByData('movie-details-page').should('exist');
   });
 
   it('should be able to reset the search', () => {
