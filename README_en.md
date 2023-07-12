@@ -25,3 +25,22 @@ You can also navigate through the result pages using the pagination buttons at t
 ### Movie Details Page
 When you click on a movie on the search page, you will be redirected to the movie details page. On this page, you can see more detailed information about the movie, such as the title, release year, rating, genre, synopsis, and other relevant details.
 Feel free to use the favorite button!
+
+## Automated Testing
+The Movies App has automated tests in place to ensure its proper functionality. These tests were developed using Cypress.
+
+### Visual Mode
+In another terminal window, run the following command to open Cypress in visual mode:
+```shell
+npx cypress open
+```
+Cypress will open a window displaying the available tests. Click on a test file to execute it and view the results in the browser.
+
+### Terminal Mode
+In another terminal window, run the following command
+```shell
+npx cypress run
+```
+Cypress will execute the tests and display the results in the terminal.
+
+Make sure that the backend is running and accessible so that the frontend can communicate with it correctly. If you encounter any issues during the execution of the frontend or tests, double-check that the environment variables are configured correctly and that the backend server is up and running.
