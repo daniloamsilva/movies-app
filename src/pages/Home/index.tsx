@@ -1,13 +1,8 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "../../redux/store";
-import {
-  setCurrentSearch,
-  setMovies,
-  setPage,
-  setTotalResults,
-  reset
-} from "../../redux/features/search-slice";
+import { setCurrentSearch, reset } from "../../redux/features/search-slice";
 import { Button, Input, ResponsiveGridLayout, Title } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents/dist/features/InputElementsFormSupport.js"
 
@@ -15,7 +10,6 @@ import styles from "./styles.module.scss";
 
 import { MovieHeaderList } from "../../components/MovieHeaderList";
 import { MovieCard } from "../../components/MovieCard";
-import { SearchMoviesResponse } from "../../types/SearchMoviesResponse";
 
 export function Home() {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,24 +19,18 @@ export function Home() {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState<string | undefined>(currentSearch);
 
-  const handleSubmitSearchForm = useCallback((event: React.FormEvent) => {
+  const handleSubmitSearchForm = useCallback(async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
 
-    fetch(`http://localhost:3333/movies?query=${search}`)
-      .then(response => response.json() as unknown as SearchMoviesResponse)
-      .then(data => {
-        dispatch(setCurrentSearch(search));
-        dispatch(setMovies(data.movies));
-        dispatch(setPage(1));
-        dispatch(setTotalResults(data.totalResults));
-      })
-      .catch(error => {
-        console.log("Erro ao buscar filmes", error);
-      });
+    try {
+      await dispatch(setCurrentSearch(search));
+    } catch (error) {
+      console.log(error);
+    }
 
     setLoading(false);
-  }, [dispatch, search]);
+  }, [search, dispatch]);
 
   const handleResetButton = useCallback(() => {
     setSearch("");

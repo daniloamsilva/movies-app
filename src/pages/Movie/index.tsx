@@ -1,31 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { AppDispatch, useAppSelector } from "../../redux/store";
 import { addFavorite, removeFavorite } from "../../redux/features/favorite-slice";
+import { getMovie } from '../../redux/features/movie-slice';
 
 import styles from './styles.module.scss';
 import { Button, ResponsiveGridLayout, Text, Title, ToggleButton } from '@ui5/webcomponents-react';
-import { SearchMovieResponse } from '../../types/SearchMovieResponse';
 import "@ui5/webcomponents-icons/dist/favorite.js";
 import "@ui5/webcomponents-icons/dist/unfavorite.js";
 
 export function Movie() {
   const { imdbID } = useParams();
-  const [movie, setMovie] = useState<SearchMovieResponse | null>(null)
 
   const dispatch = useDispatch<AppDispatch>();
   const { moviesImdbIds } = useAppSelector((state) => state.favoriteReducer);
+  const { movie } = useAppSelector((state) => state.movieReducer);
   const isFavorite = moviesImdbIds.includes(imdbID);
 
+  const handleGetMovie = useCallback(async () => {
+    await dispatch(getMovie(imdbID));
+  }, [dispatch, imdbID])
+
   useEffect(() => {
-    fetch(`http://localhost:3333/movies/${imdbID}`)
-      .then(response => response.json() as unknown as SearchMovieResponse)
-      .then(data => setMovie(data))
-      .catch(() => {
-        console.log("Erro ao buscar filme");
-      });
-  }, [imdbID]);
+    void handleGetMovie();
+  }, [handleGetMovie]);
 
   const handleFavorite = (toggle: boolean) => {
     toggle

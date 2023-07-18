@@ -4,11 +4,13 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 import searchReducer from "./features/search-slice";
 import favoriteReducer from "./features/favorite-slice";
+import movieReducer from "./features/movie-slice";
 
 export const store = configureStore({
   reducer: {
     searchReducer,
-    favoriteReducer
+    favoriteReducer,
+    movieReducer
   }
 });
 
