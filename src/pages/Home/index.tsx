@@ -90,6 +90,7 @@ export function Home() {
         )}
         {loading && <Title>Procurando...</Title>}
         {page === 0 && !loading && <Title>Busque por um filme</Title>}
+        {movies.length === 0 && !loading && page > 0 && <Title>Nenhum filme encontrado</Title>}
       </div>
     </>
   )
